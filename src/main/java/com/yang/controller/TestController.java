@@ -23,4 +23,9 @@ public class TestController {
         return mav;
     }
 
+    @RequestMapping("/toZtree")
+    public String toZtree(){
+        return "/toZtree";
+    }
+
 }
