@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<a href="test/findAllTeams">とある魔術の禁書目録</a>
+<a href="/test/findAllTeams">とある魔術の禁書目録</a>
+<a href="/test/toZtree">z-tree</a>
 </body>
 </html>
