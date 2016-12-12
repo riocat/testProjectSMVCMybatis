@@ -1,0 +1,66 @@
+spring采用分段式配置方式commons bean在context-param中设置使用ContextLoaderListener加载
+spring-mvc部分在DispatcherServlet的init-param中配置
+spring-mvc只添加和spring mvc相关内容
+注意spring-mvc中使用HandlerMapping时如果使用注解方式的RequestMappingHandlerMapping要把controller的初始化放到spring-mvc中进行，否则映射不会加载
+
+
+使用 base标签时注意再使用绝对路径将不会把base值拼接到路径中可能发生404
+
+2016.7.29晚测试时发生无法进入controller的错误
+http://blog.csdn.net/jbgtwang/article/details/7359592
+添加<mvc:annotation-driven/>
+
+<mvc:resources location="/css" mapping="/css/**" />这样使用还是出现404错误要改成<mvc:resources location="/css/" mapping="/css/**" />,
+使用<mvc:annotation-driven/>后自动加入了RequestMappingHandlerMapping和RequestMappingHandlerAdapter,除非有个别需求否则不需要再mvc.xml中再添加
+
+添加json支持
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+spring-mvc.xml
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+			</list>
+		</property>
+	</bean>
+	angularjs
+		$http.post('user/login', JSON.stringify($scope.user)).success(
+				function(responseData) {
+					if (responseData.result == 'success') {
+						location.href = "user/main";
+					} else {
+						alert(responseData.message);
+					}
+				});
+	jquery
+		$.ajax({
+			url : 'user/login',
+			method : 'POST',
+			data : JSON.stringify($scope.user),
+			// dataType : 'json', 指回调函数参数类型 预期的服务器响应的数据类型
+			contentType : 'application/json;charset=UTF-8',
+			success : function(responseData) {
+				if (responseData.result == 'success') {
+					location.href = "";
+				}
+			}
+		});
+		
+		
+包含@SessionAttributes的执行流程如下所示：
+① 首先根据@SessionAttributes注解信息查找会话内的对象放入到模型数据中；
+② 执行@ModelAttribute注解的方法：如果模型数据中包含同名的数据，则不执行@ModelAttribute注解方法进行准备表单引用数据，而是使用①步骤中的会话数据；如果模型数据中不包含同名的数据，执行@ModelAttribute注解的方法并将返回值添加到模型数据中；
+③ 执行@RequestMapping方法，绑定@ModelAttribute注解的参数：查找模型数据中是否有@ModelAttribute注解的同名对象，如果有直接使用，否则通过反射创建一个；并将请求参数绑定到该命令对象；
+此处需要注意：如果使用@SessionAttributes注解控制器类之后，③步骤一定是从模型对象中取得同名的命令对象，如果模型数据中不存在将抛出HttpSessionRequiredException Expected session attribute ‘user’(Spring3.1)
+或HttpSessionRequiredException Session attribute ‘user’ required - not found in session(Spring3.0)异常。
+④ 如果会话可以销毁了，如多步骤提交表单的最后一步，此时可以调用SessionStatus对象的setComplete()标识当前会话的@SessionAttributes指定的数据可以清理了，此时当@RequestMapping功能处理方法执行完毕会进行清理会话数据。
+
+
+
+mvn clean package 是失败可能因为maven打包前进的 maven test 发生错误造成无法打包
