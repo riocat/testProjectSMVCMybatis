@@ -17,6 +17,6 @@
                 `isParent`
                 )
         VALUES
-            (#{name},#{url},#{level},#{pid},#{isParent});
+            (#{name},#{url},#{level},#{pId},#{isParent});
     </insert>
 </mapper>

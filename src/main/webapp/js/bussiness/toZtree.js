@@ -47,16 +47,20 @@ function add(e) {
         isParent = e.data.isParent,
         nodes = zTree.getSelectedNodes(),
         treeNode = nodes[0];
+    if(!treeNode){
+        alert("必须选择父节点");
+        return;
+    }
     var permissionName = prompt("请输入名称","自定义名称");
     var permissionUrl = prompt("请输入路径","自定义路径");
     $("#editDiv").hide();
     var permissionData;
     if (treeNode) {
-        permissionData = {id:(100 + newCount), pId:treeNode.id, isParent:isParent, name:permissionName, url:permissionUrl};
-        treeNode = zTree.addNodes(treeNode, permissionData);
+        permissionData = {pId:treeNode.id, isParent:isParent, name:permissionName, url:permissionUrl};
+        treeNode = zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, isParent:isParent, name:permissionName, url:permissionUrl});
     } else {
-        permissionData = {id:(100 + newCount), pId:0, isParent:isParent, name:permissionName, url:permissionUrl};
-        treeNode = zTree.addNodes(null, permissionData);
+        permissionData = {pId:treeNode.id, isParent:isParent, name:permissionName, url:permissionUrl};
+        treeNode = zTree.addNodes(null, {id:(100 + newCount), pId:0, isParent:isParent, name:permissionName, url:permissionUrl});
     }
     if (!treeNode) {
         alert("叶子节点被锁定，无法增加子节点");

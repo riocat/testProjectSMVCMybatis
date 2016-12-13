@@ -17,7 +17,7 @@ public class Permission implements Serializable{
 
     private String level;
 
-    private int pid;
+    private int pId;
 
     private boolean module;
 
@@ -55,12 +55,12 @@ public class Permission implements Serializable{
         this.level = level;
     }
 
-    public int getPid() {
-        return pid;
+    public int getpId() {
+        return pId;
     }
 
-    public void setPid(int pid) {
-        this.pid = pid;
+    public void setpId(int pId) {
+        this.pId = pId;
     }
 
     public boolean isModule() {
