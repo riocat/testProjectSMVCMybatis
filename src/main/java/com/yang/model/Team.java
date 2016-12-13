@@ -1,9 +1,13 @@
 package com.yang.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/12/12.
  */
-public class Team {
+public class Team implements Serializable{
+
+    private static final long serialVersionUID = -7460635368366675247L;
 
     private int id;
 

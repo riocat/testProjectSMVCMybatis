@@ -17,14 +17,14 @@ public class TestController {
     private TeamService teamService;
 
     @RequestMapping("/findAllTeams")
-    public ModelAndView findAllTeams(){
+    public ModelAndView findAllTeams() {
         ModelAndView mav = new ModelAndView("/showTeamsNum");
-        mav.addObject("num",teamService.findAllTeams().size());
+        mav.addObject("num", teamService.findAllTeams().size());
         return mav;
     }
 
     @RequestMapping("/toZtree")
-    public String toZtree(){
+    public String toZtree() {
         return "/toZtree";
     }
 

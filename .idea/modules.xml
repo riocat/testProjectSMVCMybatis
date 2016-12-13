@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/gitlabTest.iml" filepath="$PROJECT_DIR$/gitlabTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testProject.iml" filepath="$PROJECT_DIR$/testProject.iml" />
     </modules>
   </component>
 </project>
