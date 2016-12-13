@@ -1,4 +1,4 @@
-spring采用分段式配置方式commons bean在context-param中设置使用ContextLoaderListener加载
+﻿spring采用分段式配置方式commons bean在context-param中设置使用ContextLoaderListener加载
 spring-mvc部分在DispatcherServlet的init-param中配置
 spring-mvc只添加和spring mvc相关内容
 注意spring-mvc中使用HandlerMapping时如果使用注解方式的RequestMappingHandlerMapping要把controller的初始化放到spring-mvc中进行，否则映射不会加载
@@ -13,7 +13,7 @@ http://blog.csdn.net/jbgtwang/article/details/7359592
 <mvc:resources location="/css" mapping="/css/**" />这样使用还是出现404错误要改成<mvc:resources location="/css/" mapping="/css/**" />,
 使用<mvc:annotation-driven/>后自动加入了RequestMappingHandlerMapping和RequestMappingHandlerAdapter,除非有个别需求否则不需要再mvc.xml中再添加
 
-添加json支持
+添加json支持 @RequestBody
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>

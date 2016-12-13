@@ -17,13 +17,11 @@ public class Permission implements Serializable{
 
     private String level;
 
-    private int parentId;
+    private int pid;
 
     private boolean module;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
+    private boolean isParent;
 
     public int getId() {
         return id;
@@ -57,12 +55,12 @@ public class Permission implements Serializable{
         this.level = level;
     }
 
-    public int getParentId() {
-        return parentId;
+    public int getPid() {
+        return pid;
     }
 
-    public void setParentId(int parentId) {
-        this.parentId = parentId;
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public boolean isModule() {
@@ -71,5 +69,13 @@ public class Permission implements Serializable{
 
     public void setModule(boolean module) {
         this.module = module;
+    }
+
+    public boolean getIsParent() {
+        return isParent;
+    }
+
+    public void setIsParent(boolean parent) {
+        isParent = parent;
     }
 }
