@@ -15,5 +15,8 @@
 <div>
     <a href="/test/toZtree">z-tree</a>
 </div>
+<div>
+    <a href="/test/toAddRole">toAddRole</a>
+</div>
 </body>
 </html>

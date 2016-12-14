@@ -62,4 +62,8 @@ public class TestController {
         return map;
     }
 
+    @RequestMapping("/toAddRole")
+    public String toAddRole() {
+        return "/addRole";
+    }
 }
