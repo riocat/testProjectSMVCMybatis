@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2016-12-13 16:57:12
+Date: 2016-12-15 14:57:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,14 +27,52 @@ CREATE TABLE `permission` (
   `pid` int(5) DEFAULT NULL,
   `isParent` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
 INSERT INTO `permission` VALUES ('1', 'permissionroot', null, '0', null, '1');
-INSERT INTO `permission` VALUES ('10', '自定义名称', '自定义路径', null, '0', '1');
-INSERT INTO `permission` VALUES ('11', '自定义名称', '自定义路径', null, '0', '0');
+INSERT INTO `permission` VALUES ('2', '偶像大师', 'lu', null, '1', '1');
+INSERT INTO `permission` VALUES ('3', '魔法禁书目录', '自定义路径', null, '1', '1');
+INSERT INTO `permission` VALUES ('4', '高槻弥生', '/yayoi', null, '2', '0');
+INSERT INTO `permission` VALUES ('5', '天海春香', '/haruka', null, '2', '0');
+INSERT INTO `permission` VALUES ('6', '上条当麻', '/dama', null, '3', '0');
+INSERT INTO `permission` VALUES ('7', '魔法侧', '自定义路径', null, '3', '1');
+INSERT INTO `permission` VALUES ('8', '神裂火织', '/kaori', null, '7', '0');
+
+-- ----------------------------
+-- Table structure for role
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES ('1', '老婆');
+
+-- ----------------------------
+-- Table structure for role_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `role_permission`;
+CREATE TABLE `role_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rid` int(11) DEFAULT NULL,
+  `pid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role_permission
+-- ----------------------------
+INSERT INTO `role_permission` VALUES ('1', '1', '4');
+INSERT INTO `role_permission` VALUES ('2', '1', '5');
+INSERT INTO `role_permission` VALUES ('3', '1', '8');
 
 -- ----------------------------
 -- Table structure for team
