@@ -83,4 +83,18 @@ public class TestController {
         return map;
     }
 
+    @RequestMapping("/showRoleMenu")
+    public String showRoleMenu(){
+       return "/roleMenu";
+    }
+
+    @RequestMapping("/getMenu")
+    @ResponseBody
+    public Map<String, Object> getMenu(){
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<Permission> lists = permissionService.getRolePermission(1);
+        map.put("data", lists);
+        map.put("result", "success");
+        return map;
+    }
 }

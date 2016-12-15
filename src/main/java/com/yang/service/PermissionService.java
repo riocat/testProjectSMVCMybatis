@@ -12,4 +12,6 @@ public interface PermissionService {
     List<Permission> getAllPermissions();
 
     int addPermission(Permission permission);
+
+    List<Permission> getRolePermission(int rid);
 }

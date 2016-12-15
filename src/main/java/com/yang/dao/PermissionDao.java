@@ -13,4 +13,8 @@ public interface PermissionDao {
     List<Permission> getAllPermissions();
 
     int addPermission(Permission permission);
+
+    List<Permission> getPermissionsByRoleId(int rid);
+
+    List<Permission> getAllParents();
 }

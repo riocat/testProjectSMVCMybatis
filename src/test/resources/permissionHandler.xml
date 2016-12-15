@@ -5,4 +5,49 @@
     <select id="getAllPermissions" resultType="com.yang.model.Permission">
         SELECT * FROM permission
     </select>
+
+    <insert id="addPermission" parameterType="com.yang.model.Permission">
+        INSERT
+        INTO
+            `permission` (
+                `name`,
+                `url`,
+                `level`,
+                `pid`,
+                `isParent`
+                )
+        VALUES
+            (#{name},#{url},#{level},#{pId},#{isParent});
+    </insert>
+
+    <select id="getPermissionsByRoleId" parameterType="int" resultType="com.yang.model.Permission">
+        SELECT
+            *
+        FROM
+            permission
+        WHERE
+            id IN (
+                SELECT
+                    pid
+                FROM
+                    role_permission
+                WHERE
+                    rid = #{rid}
+            )
+        OR
+            pid IS NULL
+        ORDER BY
+            pid
+    </select>
+
+    <select id="getAllParents" resultType="com.yang.model.Permission">
+        SELECT
+            *
+        FROM
+            permission
+        WHERE
+            pid IS NOT NULL
+        AND
+            isParent = 1
+    </select>
 </mapper>
