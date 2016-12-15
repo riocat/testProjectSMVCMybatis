@@ -18,12 +18,10 @@
 <div>
     <div id="zTree" class="ztree" style="width: 300px;height: 300px;overflow: scroll;border-color: #333333;border-style: solid;border-width: thin;"></div>
     <div class="centerForm">
-        <form>
-            <fieldset>
-                <div>角色名： <input type="text" name="roleName" placeholder="角色名" id="roleName"></div>
-                <div><button class="commitButton">添加</button></div>
-            </fieldset>
-        </form>
+        <fieldset>
+            <div>角色名： <input type="text" name="roleName" placeholder="角色名" id="roleName"></div>
+            <div><button class="commitButton" onclick="addRole()">添加</button></div>
+        </fieldset>
     </div>
 </div>
 </body>

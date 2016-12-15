@@ -4,11 +4,13 @@ import com.yang.dao.PermissionDao;
 import com.yang.model.Permission;
 import com.yang.model.Team;
 import com.yang.service.PermissionService;
+import com.yang.service.RoleService;
 import com.yang.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,6 +30,9 @@ public class TestController {
 
     @Autowired
     private PermissionService permissionService;
+
+    @Autowired
+    private RoleService roleService;
 
     @RequestMapping("/findAllTeams")
     public ModelAndView findAllTeams() {
@@ -66,4 +71,16 @@ public class TestController {
     public String toAddRole() {
         return "/addRole";
     }
+
+    @RequestMapping("/addRolePerimssion")
+    @ResponseBody
+    // http://www.iteye.com/problems/110986
+    public Map<String, Object> addRole(@RequestBody Map<String, Object> parameter) {
+        String name = (String) parameter.get("name");
+        List<Integer> pids = (List<Integer>) parameter.get("pids");
+        roleService.addRole(name, pids);
+        Map<String, Object> map = new HashMap<String, Object>();
+        return map;
+    }
+
 }

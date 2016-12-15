@@ -23,11 +23,32 @@ function loadZtreeData(){
         success : function(responseData) {
             if (responseData.result == 'success') {
                 $(responseData.data).each(function(index,element){
-                    if(element.isParent == true)
+                    if(element.isParent == true){
                         element.nocheck = true;
+                        element.open = true;
+                    }
                 });
-                zTreeObj = $.fn.zTree.init($("#zTree"), setting, responseData.data);
+                ztree = $.fn.zTree.init($("#zTree"), setting, responseData.data);
             }
+        }
+    });
+}
+
+function addRole(){
+    var pids = [];
+    var nodes = ztree.getCheckedNodes(true);
+    for(i =0;i<nodes.length;i++){
+        pids.push(nodes[i].id);
+    }
+    $.ajax({
+        url : '/test/addRolePerimssion',
+        method : 'POST',
+        //dataType : 'json', //指回调函数参数类型 预期的服务器响应的数据类型
+        // http://www.iteye.com/problems/110986
+        data:JSON.stringify({name:$('#roleName').val(),pids:pids}),
+        contentType : 'application/json;charset=UTF-8',
+        success : function(responseData) {
+            location.href="/";
         }
     });
 }
