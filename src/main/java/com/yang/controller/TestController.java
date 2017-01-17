@@ -97,4 +97,19 @@ public class TestController {
         map.put("result", "success");
         return map;
     }
+
+    @RequestMapping("/tabChange")
+    public String tabChange(){
+        return "/tabChange";
+    }
+
+    @RequestMapping("/getProgressData")
+    @ResponseBody
+    public Map<String, Object> getProgressData(){
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<Permission> lists = permissionService.getRolePermission(1);
+        map.put("data", "85%");
+        map.put("result", "success");
+        return map;
+    }
 }

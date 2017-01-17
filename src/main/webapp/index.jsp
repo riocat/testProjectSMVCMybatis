@@ -21,5 +21,8 @@
 <div>
     <a href="/test/showRoleMenu">toShowRoleMenu</a>
 </div>
+<div>
+    <a href="/test/tabChange">toTabChange</a>
+</div>
 </body>
 </html>
