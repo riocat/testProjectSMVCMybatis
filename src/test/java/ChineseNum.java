@@ -16,10 +16,11 @@ public class ChineseNum {
     public static void main(String[] args) {
 //        Random rand = new Random(25);
         Random rand = new Random(Math.round(Math.random() * 10000));
-        BigDecimal target = new BigDecimal(new Long("15165461020305150"));
+//        BigDecimal target = new BigDecimal(new Long("15165461020305150"));
+//        BigDecimal target = new BigDecimal(new Long("12345678901234561"));
 //        BigDecimal target = new BigDecimal(new Long("1100005150"));
 //        BigDecimal target = new BigDecimal(new Long("46101005150"));
-//        BigDecimal target = new BigDecimal(new Long("10000001000150"));
+        BigDecimal target = new BigDecimal(new Long("10000001000150"));
         System.out.println(target + "\n" + getChineseNum(target));
     }
 
@@ -76,7 +77,7 @@ public class ChineseNum {
                             sb.append(numChinese[intT]).append(unitChinese[1]);
                         }
                         if (intLast != 0) {
-                            sb.append(numChinese[intLast]).append(unitChinese[0]);
+                            sb.append(numChinese[intLast]);
                         }
                     } else {
                         sb.append("零");
